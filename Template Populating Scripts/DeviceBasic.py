@@ -3,11 +3,17 @@
 #TO-DO: Contingent on the above step, write comments about each field's text/size limitations
 from docxtpl import DocxTemplate
 import datetime
+import os
 
 Guidance_Level = "Basic"
 Guidance_Category = "Device"
 
-doc = DocxTemplate("/Guidance Template.docx")
+Path_To_Template = "/Guidance Template.docx"
+
+if os.path.isfile(Path_To_Template) and os.access(Path_To_Template, os.R_OK):
+    doc = DocxTemplate(Path_To_Template)
+else:
+    print("Either the file was not found or it wasn't accesible. Program exiting...")
 
 context = {
     # Level (1 capital letter)
